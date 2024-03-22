@@ -14,13 +14,13 @@ const Header = () => {
     <NavbarWrapper>
       <AppBar sx={{ padding: "10px", backgroundColor: "darkblue" }}>
         <Toolbar>
-          <Typography className="logo">hackhub.nl</Typography>
+          <Typography className="logo pixelify-sans-600">hackhub.nl</Typography>
           <div className="navLinks">
             {menuItems.map((nav, index) => (
               <Tab label={nav.name} key={index} />
             ))}
           </div>
-          <Button variant="contained" color="info">
+          <Button className="subscribeBtn" variant="contained" color="info">
             Subscribe
           </Button>
         </Toolbar>
