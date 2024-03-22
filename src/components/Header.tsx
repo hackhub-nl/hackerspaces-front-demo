@@ -1,25 +1,28 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Tabs, Tab, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Tab, Button } from "@mui/material";
 import { NavbarWrapper } from "../styles/Header.modules";
 
 const menuItems = [
   { name: "Home" },
   { name: "Hackerspaces" },
   { name: "Events" },
+  { name: "Locations " },
 ];
 
 const Header = () => {
   return (
     <NavbarWrapper>
-      <AppBar>
+      <AppBar sx={{ padding: "10px", backgroundColor: "darkblue" }}>
         <Toolbar>
-          <Typography>hackhub.nl</Typography>
-
-          <Tabs>
+          <Typography className="logo">hackhub.nl</Typography>
+          <div className="navLinks">
             {menuItems.map((nav, index) => (
-              <Tab label={nav.name} />
+              <Tab label={nav.name} key={index} />
             ))}
-          </Tabs>
+          </div>
+          <Button variant="contained" color="info">
+            Subscribe
+          </Button>
         </Toolbar>
       </AppBar>
     </NavbarWrapper>
