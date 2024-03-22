@@ -20,4 +20,32 @@ export const NavbarWrapper = styled.div`
   .subscribeBtn {
     margin-left: auto;
   }
+
+  .navLinks {
+  }
+
+  .subscribeBtn {
+    font-size: 18px;
+    background: purple;
+  }
+
+  .links {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 20px;
+    color: orange;
+    &:hover {
+      background-color: purple;
+    }
+  }
+
+  @media (max-width: 1060) {
+    .logo {
+      font-size: 1.6rem;
+    }
+
+    .links,
+    .loginBtn {
+      font-size: 12px;
+    }
+  }
 `;

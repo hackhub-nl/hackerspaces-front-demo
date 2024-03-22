@@ -17,7 +17,7 @@ const Header = () => {
           <Typography className="logo pixelify-sans-600">hackhub.nl</Typography>
           <div className="navLinks">
             {menuItems.map((nav, index) => (
-              <Tab label={nav.name} key={index} />
+              <Tab className="links" label={nav.name} key={index} />
             ))}
           </div>
           <Button className="subscribeBtn" variant="contained" color="info">
