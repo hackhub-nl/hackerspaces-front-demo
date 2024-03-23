@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Tab, Button } from "@mui/material";
-import { NavbarWrapper } from "../styles/Header.modules";
+import { NavbarWrapper } from "../styles/Styles.modules";
 
 const menuItems = [
   { name: "Home" },
