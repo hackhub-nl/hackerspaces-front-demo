@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+//! Header starts
 export const NavbarWrapper = styled.div`
   .logo {
     color: white;
@@ -49,3 +50,10 @@ export const NavbarWrapper = styled.div`
     }
   }
 `;
+//! Header ends
+
+//! DisplayItems starts
+export const HackerspaceEventsWrapper = styled.div`
+
+`;
+//! DisplayItems ends
