@@ -36,9 +36,8 @@ const DisplayItems: React.FC<DataProps> = ({
     const fetchItems = async () => {
       try {
         const response = await axios.get(`${apiEndpoint}`);
-        const { status, message, data } = response.data;
+        const { data } = response.data;
         setShowItems(data);
-        console.log(data);
 
         setTimeout(() => {
           setLoading(true);
@@ -61,7 +60,6 @@ const DisplayItems: React.FC<DataProps> = ({
         <>
           <div className="itemHeading">
             <h1>{itemHeading}</h1>
-            <h1>{apiEndpoint}</h1>
           </div>
           <div className="itemCard">
             {showItems.map((item) => {
@@ -74,7 +72,7 @@ const DisplayItems: React.FC<DataProps> = ({
                       <div className="itemInfo">
                         {hackerspacesOn && (
                           <>
-                            <p>List of hackerspaces</p>
+                            <p>{item.city}</p>
                           </>
                         )}
                         {eventsOn && (

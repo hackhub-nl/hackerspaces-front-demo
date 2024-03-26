@@ -10,10 +10,10 @@ function App() {
       <br />
       <br />
       <DisplayItems
-        apiEndpoint={`${process.env.REACT_APP_API_EVENTS}`}
-        itemHeading={"Events"}
-        hackerspacesOn={false}
-        eventsOn={true}
+        apiEndpoint={`${process.env.REACT_APP_API_HACKERSPACES}`}
+        itemHeading={"Hackerspaces:"}
+        hackerspacesOn={true}
+        eventsOn={false}
       />
     </>
   );
