@@ -1,54 +1,84 @@
 import React, { useEffect, useState } from "react";
 import { HackerspaceEventsWrapper } from "../styles/Styles.modules";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 //! Types for API data
-interface Hackerspace {
+interface Item {
   id: number;
   name: string;
+
+  // Hackerspace
   city: string;
-}
 
-interface Event {
-  id: number;
-  name: string;
+  // Event
   description: string;
-  hackerspaceId: number;
 }
 
-const DisplayItems = () => {
-  const [showItems, setShowItems] = useState<Hackerspace[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+interface DataProps {
+  apiEndpoint: string;
+  itemHeading: string;
+  hackerspacesOn: boolean;
+  eventsOn: boolean;
+}
+
+const DisplayItems: React.FC<DataProps> = ({
+  apiEndpoint,
+  itemHeading,
+  hackerspacesOn,
+  eventsOn,
+}) => {
   const [loading, setLoading] = useState(false);
 
-  // Pagination from the API
   useEffect(() => {
-    const fetchHackerspaces = async () => {
+    const fetchItems = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_HACKERSPACES}`,
-          {
-            params: {
-              page: currentPage,
-            },
-          }
-        );
+        const response = await axios.get(`${apiEndpoint}`);
+        console.log(response.data);
 
-        const { results, total_pages } = response.data;
-        setShowItems(results.slice(0, 16));
-        setTotalPages(total_pages);
         setTimeout(() => {
           setLoading(true);
         }, 1000);
       } catch (error) {
-        console.error("Error fetching hackerspaces:", error);
+        console.error("Error fetching items:", error);
       }
     };
-    fetchHackerspaces();
-  }, [currentPage]);
+    fetchItems();
+  }, [apiEndpoint]);
 
-  return <HackerspaceEventsWrapper></HackerspaceEventsWrapper>;
+  return (
+    <HackerspaceEventsWrapper>
+      {!loading ? (
+        <div className="loadingOverlay">
+          <CircularProgress size={50} color="warning" />
+          <p>Loading . . .</p>
+        </div>
+      ) : (
+        <>
+          <div className="itemHeading">
+            <h1>{itemHeading}</h1>
+            <h1>{apiEndpoint}</h1>
+          </div>
+          <div>
+            <>
+              <div className="itemInfo">
+                {hackerspacesOn && (
+                  <>
+                    <p>List of hackerspaces</p>
+                  </>
+                )}
+                {eventsOn && (
+                  <>
+                    <p>List of events</p>
+                  </>
+                )}
+              </div>
+            </>
+          </div>
+        </>
+      )}
+    </HackerspaceEventsWrapper>
+  );
 };
 
 export default DisplayItems;
