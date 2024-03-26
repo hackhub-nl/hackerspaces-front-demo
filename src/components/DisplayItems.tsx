@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HackerspaceEventsWrapper } from "../styles/Styles.modules";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import { isTemplateSpan } from "typescript";
 
 //! Types for API data
 interface Item {
@@ -29,12 +30,15 @@ const DisplayItems: React.FC<DataProps> = ({
   eventsOn,
 }) => {
   const [loading, setLoading] = useState(false);
+  const [showItems, setShowItems] = useState<Item[]>([]);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
         const response = await axios.get(`${apiEndpoint}`);
-        console.log(response.data);
+        const { status, message, data } = response.data;
+        setShowItems(data);
+        console.log(data);
 
         setTimeout(() => {
           setLoading(true);
@@ -44,7 +48,7 @@ const DisplayItems: React.FC<DataProps> = ({
       }
     };
     fetchItems();
-  }, [apiEndpoint]);
+  }, [apiEndpoint, eventsOn, hackerspacesOn]);
 
   return (
     <HackerspaceEventsWrapper>
@@ -59,21 +63,31 @@ const DisplayItems: React.FC<DataProps> = ({
             <h1>{itemHeading}</h1>
             <h1>{apiEndpoint}</h1>
           </div>
-          <div>
-            <>
-              <div className="itemInfo">
-                {hackerspacesOn && (
-                  <>
-                    <p>List of hackerspaces</p>
-                  </>
-                )}
-                {eventsOn && (
-                  <>
-                    <p>List of events</p>
-                  </>
-                )}
-              </div>
-            </>
+          <div className="itemCard">
+            {showItems.map((item) => {
+              return (
+                <>
+                  <h2>{item.name}</h2>
+
+                  <div>
+                    <>
+                      <div className="itemInfo">
+                        {hackerspacesOn && (
+                          <>
+                            <p>List of hackerspaces</p>
+                          </>
+                        )}
+                        {eventsOn && (
+                          <>
+                            <p>{item.description}</p>
+                          </>
+                        )}
+                      </div>
+                    </>
+                  </div>
+                </>
+              );
+            })}
           </div>
         </>
       )}
