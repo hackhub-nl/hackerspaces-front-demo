@@ -2,6 +2,7 @@ import DisplayItems from "./components/DisplayItems";
 import Header from "./components/Header";
 import { useGetHackerspaces } from "./lib/api-hooks";
 import { FetchState } from "./types";
+import "./App.css";
 
 function App() {
   const [hackerspaces, fetchState, getHackerspaces] = useGetHackerspaces();
