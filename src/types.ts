@@ -6,11 +6,6 @@ export enum FetchState {
 }
 
 export type HackerspaceData = {
-    id: number,
-    name: string,
-    city: string,
-    userId: number,
-    createdAt: string,
-    updatedAt: string
-}
-
+  name: string;
+  city: string;
+};

@@ -25,15 +25,12 @@ function App() {
         <>
           <p>List of Hackerspaces in the Netherlands:</p>
           <ul className="hackerspaces-list">
-            {hackerspaces.map((hackerspace) => (
-              <li key={hackerspace.id} className="hackerspace">
+            {hackerspaces.map((hackerspace, index = 0) => (
+              <li key={index + 1} className="hackerspace">
                 <h3>
-                  {hackerspace.id} - {hackerspace.name}
+                  {index + 1} - {hackerspace.name}
                 </h3>
                 <p>City: {hackerspace.city}</p>
-                <p>User Id: {hackerspace.userId}</p>
-                <p>Created At: {hackerspace.createdAt}</p>
-                <p>Updated At: {hackerspace.updatedAt}</p>
               </li>
             ))}
           </ul>
