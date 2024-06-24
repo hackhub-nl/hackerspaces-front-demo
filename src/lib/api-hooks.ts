@@ -9,7 +9,7 @@ export function useGetHackerspaces() {
     try {
       setFetchState(FetchState.LOADING);
 
-      const res = await axios.get("http://localhost:7000/api/hackerspaces");
+      const res = await axios.get(process.env.REACT_APP_API_HACKERSPACES || "");
       const resData = res.data as Array<HackerspaceData>;
 
       setHackerspaces(resData);
