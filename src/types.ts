@@ -8,4 +8,6 @@ export enum FetchState {
 export type HackerspaceData = {
   name: string;
   city: string;
+  province: string;
+  website: string;
 };
