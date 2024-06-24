@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>hackerspaces-front-demo</h1>
+      <h1>hackhub-front-poc</h1>
       {fetchState === FetchState.DEFAULT && (
         <>
           <p>Get all hackerspaces:</p>
@@ -31,6 +31,11 @@ function App() {
                   {index + 1} - {hackerspace.name}
                 </h3>
                 <p>City: {hackerspace.city}</p>
+                <p>Province: {hackerspace.province}</p>
+                <p>
+                  Website:{" "}
+                  <a href={hackerspace.website}>{hackerspace.website}/</a>{" "}
+                </p>
               </li>
             ))}
           </ul>
