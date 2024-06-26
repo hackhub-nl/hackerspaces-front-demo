@@ -1,4 +1,4 @@
-# hackhub-front-poc
+# hackhub-client-poc
 
 ### Instructions:
 
